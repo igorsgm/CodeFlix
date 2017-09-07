@@ -53,8 +53,8 @@ class UsersController extends Controller
             // Redirect to User's creation page
         }
 
-        $data         = $form->getFieldValues();
-        $data['role'] = User::ROLE_ADMIN;
+        $data             = $form->getFieldValues();
+        $data['role']     = User::ROLE_ADMIN;
         $data['password'] = User::generatePassword();
 
         User::create($data);

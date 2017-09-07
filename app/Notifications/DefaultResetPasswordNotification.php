@@ -20,7 +20,7 @@ class DefaultResetPasswordNotification extends ResetPassword
         return (new MailMessage)
             ->subject('Redefinição de senha')
             ->line('Você está recebendo este email porque uma redefinição de senha foi requisitada.')
-            ->action('Redefinir senha', url(config('app.url').route('password.reset', $this->token, false)))
+            ->action('Redefinir senha', url(config('app.url') . route('password.reset', $this->token, false)))
             ->line('Se você não requisitou isto, por favor desconsidere.');
     }
 

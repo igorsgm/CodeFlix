@@ -3,7 +3,7 @@
 namespace CodeFlix\Repositories;
 
 use CodeFlix\Models\User;
-use CodeFlix\Validators\UserValidator;
+use Jrean\UserVerification\Facades\UserVerification;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
@@ -37,6 +37,11 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $attributes['role']     = User::ROLE_ADMIN;
         $attributes['password'] = User::generatePassword();
 
-        return parent::create($attributes);
+        $model = parent::create($attributes);
+
+        UserVerification::generate($model);
+        UserVerification::send($model, 'Sua conta foi criada');
+
+        return $model;
     }
 }

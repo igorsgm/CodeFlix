@@ -28,7 +28,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
     Route::name('login')->get('login', 'Auth\LoginController@showLoginForm');
     Route::post('login', 'Auth\LoginController@login');
 
-    Route::group(['middleware' => 'can:admin'], function () {
+    Route::group(['middleware' => ['can:admin', 'isVerified']], function () {
         Route::name('logout')->post('logout', 'Auth\LoginController@logout');
 
         Route::get('/dashboard', function () {

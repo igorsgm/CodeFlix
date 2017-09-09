@@ -38,6 +38,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
             return view('admin.dashboard');
         });
 
+        Route::name('user_settings.edit')->get('users/settings', 'Auth\UserSettingsController@edit');
+        Route::name('user_settings.update')->put('users/settings', 'Auth\UserSettingsController@update');
+
         Route::resource('users', 'UsersController');
         Route::resource('categories', 'CategoriesController');
     });

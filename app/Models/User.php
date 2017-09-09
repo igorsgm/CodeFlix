@@ -45,7 +45,7 @@ class User extends Authenticatable implements TableInterface
      */
     public static function generatePassword($password = null)
     {
-        return !empty($password) ? bcrypt(str_random(8)) : bcrypt($password);
+        return empty($password) ? bcrypt(str_random(8)) : bcrypt($password);
     }
 
     /**

@@ -24,21 +24,27 @@
             ['link' => route('admin.categories.index'), 'title' => 'Categorias'],
         ];
 
-        $menus  = Navigation::links($arrayLinks);
-        $logout = Navigation::links([
+        $menus     = Navigation::links($arrayLinks);
+        $menuRight = Navigation::links([
             [
                 Auth::user()->name,
                 [
                     [
                         'link'           => route('admin.logout'),
                         'title'          => 'Logout',
-                        'linkAttributes' => ['onclick' => "event.preventDefault(); document.getElementById(\"form-logout\").submit();"]
+                        'linkAttributes' => [
+                            'onclick' => "event.preventDefault(); document.getElementById(\"form-logout\").submit();"
+                        ]
+                    ],
+                    [
+                        'link' => route('admin.user_settings.edit'),
+                        'title' => 'Configurações'
                     ]
                 ],
             ]
         ])->right();
 
-        $navbar->withContent($menus)->withContent($logout);
+        $navbar->withContent($menus)->withContent($menuRight);
     }
     ?>
 

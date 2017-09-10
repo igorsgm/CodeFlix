@@ -17,4 +17,9 @@ class Video extends Model implements Transformable
     {
         return $this->belongsTo(Serie::class);
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }
